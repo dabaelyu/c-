@@ -1,0 +1,48 @@
+//zadanie 1
+
+//zadanie 2
+#include <iostream>
+#include <iomanip> 
+using namespace std;
+
+int main() {
+    int arr[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    int rowSums[3], colSums[3];
+
+    for (int i = 0; i < 3; ++i) {
+        rowSums[i] = 0;
+        for (int j = 0; j < 3; ++j) {
+            rowSums[i] += arr[i][j]; 
+            if (i == 0) {
+                colSums[j] = arr[i][j]; 
+            }
+            else {
+                colSums[j] += arr[i][j]; 
+            }
+        }
+    }
+
+    cout << setw(3) << arr[0][0] << setw(3) << arr[0][1] << setw(3)
+        << arr[0][2] << " | " << rowSums[0] << '\n';
+    cout << setw(3) << arr[1][0] << setw(3) << arr[1][1] << setw(3)
+        << arr[1][2] << " | " << rowSums[1] << '\n';
+    cout << setw(3) << arr[2][0] << setw(3) << arr[2][1] << setw(3)
+        << arr[2][2] << " | " << rowSums[2] << '\n';
+
+    cout << "---------------" << '\n';
+
+    for (int j = 0; j < 3; j++) {
+        cout << setw(3) << colSums[j];
+    }
+    cout << " | ";
+    int totalSum = 0;
+    for (auto s : rowSums) {
+        totalSum += s;
+    }
+    cout << totalSum;
+}
