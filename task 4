@@ -1,6 +1,42 @@
 //zadanie 1
-
-
+#include <iostream> 
+ 
+int main() { 
+ setlocale(LC_ALL, "ru"); 
+ int arr[3][3]{ 
+  {3, 7, 2}, 
+  {4, 5, 8}, 
+  {1, 2, 6} 
+ }; 
+ 
+ int sum = 0; 
+ int count = 0; 
+ int min = arr[0][0]; 
+ int max = arr[0][0]; 
+ 
+ for (int i = 0; i < 3; ++i) { 
+  for (int j = 0; j < 3; ++j) { 
+   sum += arr[i][j]; 
+   count++; 
+ 
+   if (arr[i][j] > max) { 
+    max = arr[i][j]; 
+   } 
+   if(arr[i][j] < min) { 
+    min = arr[i][j]; 
+   } 
+  } 
+ 
+ } 
+ 
+ double avg = static_cast<double>(sum) / count; 
+ 
+ std::cout << "Сумма элементов массива: " << sum << '\n'; 
+ std::cout << "Среднее арифметическое: " << avg << '\n'; 
+ std::cout << "Минимальное значение: " << min << '\n'; 
+ std::cout << "Максимальное значение: " <<max << '\n'; 
+ return 0; 
+}
 
 //zadanie 2
 #include <iostream>
