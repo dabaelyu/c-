@@ -1,0 +1,95 @@
+//zadanie 1
+#include <iostream>
+
+void max(int* number1, int* number2);
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int number1;
+    int number2;
+    std::cout << "первое число ";
+    std::cin >> number1;
+    std::cout << "второе число ";
+    std::cin >> number2;
+
+    int* qnumber1 = &number1;
+    int* qnumber2 = &number2;
+
+    max(qnumber1, qnumber2);
+}
+
+void max(int* number1, int* number2) {
+    std::cout << *number1;
+
+    if (*number1 > *number2) {
+        std::cout << " > ";
+    }
+    else if (*number1 < *number2) {
+        std::cout << " < ";
+    }
+    else {
+        std::cout << " = ";
+    }
+    std::cout << *number2;
+}
+
+//zadanie 2
+#include <iostream>
+
+void morp(int* number);
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int number;
+    std::cout << "число: ";
+    std::cin >> number;
+
+    int* qnumber = &number;
+    morp(qnumber);
+}
+
+void morp(int* number) {
+   
+    if (*number > 0) {
+        std::cout << "знак: + ";
+    }
+    else if (*number < 0) {
+        std::cout << "знак: - ";
+    }
+}
+
+//zadanie 3
+#include <iostream>
+
+using namespace std;
+
+void zamena(int* number1, int* number2);
+void print(int* number1, int* number2);
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int number1;
+    int number2;
+    cout << "первое число ";
+    cin >> number1;
+    cout << "второе число ";
+    cin >> number2;
+
+    int* qumber1 = &number1;
+    int* qumber2 = &number2;
+
+    print(qumber1, qumber2);
+    zamena(qumber1, qumber2);
+    print(qumber1, qumber2);
+}
+
+void zamena(int* number1, int* number2) {
+    int buffer = *number1;
+    *number1 = *number2;
+    *number2 = buffer;
+    cout << "замена:" << endl;
+}
+
+void print(int* number1, int* number2) {
+   cout << "первое число = " << *number1 << endl << "второе число = " << *number2 << endl;
+}
