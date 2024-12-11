@@ -1,0 +1,64 @@
+//zadanie 4
+#include <iostream>
+#include <vector>
+
+void rearrangeEvenOdd(std::vector<int>& arr) {
+    int n = arr.size();
+    int j = 0; 
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0) {
+            std::swap(arr[i], arr[j]);
+            j++;
+        }
+    }
+}
+
+int main() {
+    std::vector<int> arr = { 1, 2, 3, 4, 5, 6 };
+
+    rearrangeEvenOdd(arr);
+
+    for (int arr : arr) {
+        std::cout << arr << " ";
+    }
+}
+
+//zadanie 1
+#include <iostream>
+#include <vector>
+
+std::vector<int> removeDuplicates(const std::vector<int>& nums) {
+    std::vector<int> unique; 
+    bool isDuplicate;
+
+    for (size_t i = 0; i < nums.size(); ++i) {
+        isDuplicate = false;
+
+        for (size_t j = 0; j < unique.size(); ++j) {
+            if (nums[i] == unique[j]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        if (!isDuplicate) {
+            unique.push_back(nums[i]);
+        }
+    }
+
+    return unique;
+}
+
+int main() {
+    std::vector<int> nums = { 1, 2, 2, 3, 4, 4, 5 };
+    std::vector<int> uniqueNums = removeDuplicates(nums);
+
+    std::cout << "Unique elements: ";
+    for (int num : uniqueNums) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
