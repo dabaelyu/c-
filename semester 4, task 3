@@ -1,0 +1,85 @@
+/*10. Шаблонные функции — это функции, которые могут работать с разными типами данных, 
+используя параметры-шаблоны. Основное преимущество заключается в возможности создания универсального кода, который 
+легко адаптируется под различные типы данных, уменьшая необходимость дублировать код.
+11. Специализация шаблонных функций позволяет создавать специализированные версии функции для конкретных типов данных. 
+Это полезно, когда стандартная реализация шаблона не подходит для определённого типа или требует оптимизации.
+12. При вызове шаблонной функции с несовместимыми типами компилятор выдаёт ошибку времени компиляции, 
+так как не сможет сгенерировать корректный код для такого типа. Ошибки связаны с отсутствием необходимых операций 
+или методов для указанных типов.*/
+
+//praktika 7
+/*
+#include <iostream>
+using namespace std;
+
+template<typename T>
+T maxElement(T arr[], size_t size) {
+    if (size == 0)
+        return T(); 
+
+    T max = arr[0];
+    for (size_t i = 1; i < size; ++i) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int main() {
+    int intArray[] = { 3, 6, 9, 12, 15 };
+    size_t intSize = sizeof(intArray) / sizeof(intArray[0]);
+
+    cout << "Максимальное число в массиве int: " << maxElement(intArray, intSize) << endl;
+
+    double doubleArray[] = { 4.5, 7.8, 10.25, 13.75 };
+    size_t doubleSize = sizeof(doubleArray) / sizeof(doubleArray[0]);
+
+    cout << "Максимальное число в массиве double: " << maxElement(doubleArray, doubleSize) << endl;
+
+    return 0;
+}
+*/
+
+//praktika 8
+/*
+#include <iostream>
+using namespace std;
+
+struct Rectangle {
+    double shirina;
+    double visota;
+};
+
+template<typename T>
+double sum_array(const T* array, size_t size) {
+    double total = 0.0;
+    for (size_t i = 0; i < size; ++i) {
+        total += static_cast<double>(array[i]); 
+    }
+    return total;
+}
+
+template<>
+double sum_array<Rectangle>(const Rectangle* rectangles, size_t size) {
+    double totalArea = 0.0;
+    for (size_t i = 0; i < size; ++i) {
+        const Rectangle& r = rectangles[i];
+        totalArea += r.shirina * r.visota; 
+    }
+    return totalArea;
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    Rectangle rectangles[] = {
+        {3.0, 4.0}, {5.0, 6.0}, {7.0, 8.0}
+    };
+    size_t numRectangles = sizeof(rectangles) / sizeof(Rectangle);
+
+    double totalArea = sum_array(rectangles, numRectangles);
+    cout << "Общая площадь прямоугольников: " << totalArea << endl;
+
+    return 0;
+}
+*/
