@@ -1,0 +1,95 @@
+#include <iostream>
+
+class List {
+public:
+    int data;
+    List* next;
+
+    List(int _data) {
+        data = _data;
+        this->next = nullptr;
+    }
+};
+
+class LinkedList {
+private:
+    List* head;
+
+public:
+    LinkedList() {
+        head = nullptr;
+    }
+
+    ~LinkedList() {
+        List* current = head;
+        List* nextList;
+        while (current != nullptr) {
+            nextList = current->next;
+            delete current;
+            current = nextList;
+        }
+    }
+
+    void dobav(int data) {
+        List* newList = new List(data);
+        if (head == nullptr) {
+            head = newList;
+        }
+        else {
+            List* temp = head;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newList;
+        }
+    }
+
+    void uberi(int data) {
+        List* temp = head;
+        List* prev = nullptr;
+
+        if (temp != nullptr && temp->data == data) {
+            head = temp->next;
+            delete temp;
+            return;
+        }
+
+        while (temp != nullptr && temp->data != data) {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        if (temp == nullptr) {
+            return; 
+        }
+
+        prev->next = temp->next;
+        delete temp;
+    }
+
+    void print() const {
+        List* temp = head;
+        while (temp != nullptr) {
+            std::cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        std::cout << "null";
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    LinkedList list;
+
+    list.dobav(10);
+    list.dobav(20);
+    list.dobav(30);
+
+    std::cout << "Список: ";
+    list.print();
+    std::cout << std::endl;
+    list.uberi(20);
+    std::cout << "Список: ";
+    list.print();
+    std::cout << std::endl;
+}
