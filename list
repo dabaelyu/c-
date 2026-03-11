@@ -95,5 +95,213 @@ int main() {
 }
 
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров - Модный Магазин</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f9f9f9; 
+        }
+        header { 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #333; 
+            color: white; 
+        }
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 25px; 
+            margin-top: 20px; 
+        }
+        .product-item { 
+            border: 1px solid #ddd; 
+            padding: 15px; 
+            text-align: center; 
+            cursor: pointer; 
+            background-color: white; 
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .product-item:hover { 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .product-name {
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #333;
+        }        .product-price {
+            color: #e74c3c;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 5px 0 10px;
+        }
+        .color-btn {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .color-btn:hover {
+            background-color: #8e44ad;
+        }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.7); 
+            z-index: 1000; 
+        }
+        .modal-content { 
+            background-color: white; 
+            margin: 5% auto; 
+            padding: 25px; 
+            width: 80%; 
+            max-width: 550px; 
+            border-radius: 10px; 
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px; 
+            cursor: pointer; 
+            color: #aaa;
+        }
+        .close:hover {
+            color: #000;
+        }
+        nav {             text-align: center; 
+            margin: 20px 0; 
+        }
+        nav a { 
+            margin: 0 15px; 
+            text-decoration: none; 
+            color: #333; 
+            font-weight: bold; 
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        .order-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .order-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Каталог Товаров</h1></header>
+    
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="about.html">О нас</a>
+    </nav>
 
+    <div class="product-grid" id="products"></div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Полный список товаров (15 позиций)        const allProducts = [
+            {id: 1, name: "Футболка", price: 1200, desc: "Хлопковая футболка премиум класса", img: "https://via.placeholder.com/250x300/FFD700/000000?text=Футболка"},
+            {id: 2, name: "Джинсы", price: 2500, desc: "Классические джинсы из плотного денима", img: "https://via.placeholder.com/250x300/4169E1/FFFFFF?text=Джинсы"},
+            {id: 3, name: "Платье", price: 3200, desc: "Летнее платье из легкой ткани", img: "https://via.placeholder.com/250x300/FF69B4/FFFFFF?text=Платье"},
+            {id: 4, name: "Свитер", price: 2800, desc: "Теплый свитер из мериносовой шерсти", img: "https://via.placeholder.com/250x300/8B4513/FFFFFF?text=Свитер"},
+            {id: 5, name: "Юбка", price: 1900, desc: "Кожаная мини-юбка", img: "https://via.placeholder.com/250x300/2F4F4F/FFFFFF?text=Юбка"},
+            {id: 6, name: "Куртка", price: 4500, desc: "Зимняя утепленная куртка", img: "https://via.placeholder.com/250x300/4682B4/FFFFFF?text=Куртка"},
+            {id: 7, name: "Блуза", price: 2100, desc: "Шелковая блуза с принтом", img: "https://via.placeholder.com/250x300/FFB6C1/000000?text=Блуза"},
+            {id: 8, name: "Шорты", price: 1400, desc: "Спортивные шорты из дышащей ткани", img: "https://via.placeholder.com/250x300/32CD32/000000?text=Шорты"},
+            {id: 9, name: "Пальто", price: 6000, desc: "Весеннее пальто oversize", img: "https://via.placeholder.com/250x300/708090/FFFFFF?text=Пальто"},
+            {id: 10, name: "Рубашка", price: 1800, desc: "Офисная рубашка с длинными рукавами", img: "https://via.placeholder.com/250x300/F0E68C/000000?text=Рубашка"},
+            {id: 11, name: "Толстовка", price: 2200, desc: "Удобная толстовка с капюшоном", img: "https://via.placeholder.com/250x300/FFA07A/000000?text=Толстовка"},
+            {id: 12, name: "Комбинезон", price: 2700, desc: "Денимовый комбинезон", img: "https://via.placeholder.com/250x300/40E0D0/000000?text=Комбинезон"},
+            {id: 13, name: "Жилет", price: 1600, desc: "Трикотажный жилет", img: "https://via.placeholder.com/250x300/9370DB/FFFFFF?text=Жилет"},
+            {id: 14, name: "Брюки", price: 2300, desc: "Стильные брюки чинос", img: "https://via.placeholder.com/250x300/DAA520000?text=Брюки"},
+            {id: 15, name: "Костюм", price: 5500, desc: "Двухпредметный деловой костюм", img: "https://via.placeholder.com/250x300/2F4F4F/FFFFFF?text=Костюм"}
+        ];
+
+        const productGrid = document.getElementById('products');
+        allProducts.forEach(product => {
+            const item = document.createElement('div');
+            item.className = 'product-item';
+            item.onclick = () => openModal(product);
+            item.innerHTML = `
+                <img src="${product.img}" alt="${product.name}" class="product-image">
+                <div class="product-name">${product.name}</div>
+                <div class="product-price">${product.price} ₽</div>
+                <button class="color-btn" onclick="selectColor(event, '${product.name}')">Выбрать цвет</button>
+            `;
+            productGrid.appendChild(item);
+        });
+
+        function selectColor(e, productName) {
+            e.stopPropagation(); // Останавливаем всплытие события, чтобы не открылось модальное окно
+            alert(`Для "${productName}" выбран цвет: Черный`);
+        }
+
+        function openModal(product) {
+            document.getElementById('modalBody').innerHTML = `
+                <h2>${product.name}</h2>
+                <img src="${product.img}" style="width:100%; border-radius:5px;">
+                <p>${product.desc}</p>
+                <p><strong>Цена: ${product.price} ₽</strong></p>
+                <button class="order-btn" onclick="orderProduct(${product.id}, '${product.name}')">Добавить в корзину</button>
+            `;
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        document.querySelector('.close').onclick = () => {
+            document.getElementById('productModal').style.display = 'none';        };
+        window.onclick = (e) => {
+            if (e.target.id === 'productModal') {
+                document.getElementById('productModal').style.display = 'none';
+            }
+        };
+
+        function orderProduct(id, name) {
+            alert(`"${name}" добавлен в корзину!`);
+        }
+    </script>
+</body>
+</html>
 
