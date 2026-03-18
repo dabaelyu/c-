@@ -94,3 +94,72 @@ int main() {
     std::cout << std::endl;
 }
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Цифровая Библиотека</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #4a0e4e;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        .info-section {
+            margin-bottom: 30px;
+        }
+        .top-books h2 {
+            color: #4a0e4e;
+        }
+        .book-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .book-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Добро пожаловать в Моя Цифровая Библиотека</h1>
+    </header>
+
+    <div class="container">
+        <section class="info-section">
+            <h2>О нас</h2>
+            <p>Наш сайт — это цифровая библиотека, где вы можете найти тысячи книг на любой вкус. Мы стремимся сделать чтение доступным и удобным для всех.</p>
+        </section>
+
+        <section class="top-books">
+            <h2>Самые читаемые книги</h2>
+            <div class="book-list">
+                <div class="book-item">1. "Война и мир" — Лев Толстой</div>
+                <div class="book-item">2. "Преступление и наказание" — Фёдор Достоевский</div>
+                <div class="book-item">3. "Мастер и Маргарита" — Михаил Булгаков</div>
+                <div class="book-item">4. "Анна Каренина" — Лев Толстой</div>
+                <div class="book-item">5. "1984" — Джордж Оруэлл</div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
