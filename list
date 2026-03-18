@@ -94,3 +94,155 @@ int main() {
     std::cout << std::endl;
 }
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Цифровая Библиотека</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #5d26c1, #4a0e4e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .info-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .info-section h2 {
+            color: #5d26c1;            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .top-books h2 {
+            color: #4a0e4e;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .book-item {
+            background: linear-gradient(to bottom, #ffffff, #f9f9ff);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .book-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-item h3 {
+            color: #4a0e4e;
+            font-size: 1.3rem;
+        }
+
+        .book-item p {
+            color: #666;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0 { opacity: 1; }
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚 Моя Цифровая Библиотека</h1>
+        <p>Откройте для себя мир знаний и воображения</p>
+    </header>
+
+    <div class="container">
+        <section class="info-section">
+            <h2>О Нас</h2>
+            <p>Наш сайт — это цифровая библиотека, где вы можете найти тысячи книг на любой вкус. Мы стремимся сделать чтение доступным, удобным и увлекательным для всех возрастов. Исследуйте, читайте и вдохновляйтесь!</p>
+        </section>
+
+        <section class="top-books">
+            <h2>🔥 Самые читаемые книги</h2>
+            <div class="book-list">
+                <div class="book-item">
+                    <h3>Война и мир</h3>
+                    <p>Лев Толстой</p>
+                </div>
+                <div class="book-item">
+                    <h3>Преступление и наказание</h3>
+                    <p>Фёдор Достоевский</p>
+                </div>
+                <div class="book-item">
+                    <h3>Мастер и Маргарита</h3>
+                    <p>Михаил Булгаков</p>
+                </div>
+                <div class="book-item">
+                    <h3>Анна Каренина</h3>
+                    <p>Лев Толстой</p>
+                </div>
+                <div class="book-item">
+                    <h3>1984</h3>
+                    <p>Джордж Оруэлл</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>        &copy; 2026 Моя Цифровая Библиотека. Все права защищены.
+    </footer>
+
+</body>
+</html>
